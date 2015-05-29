@@ -14,5 +14,10 @@ namespace DigitalSigner.Classes
         {
             //dsvfgfdsvgsfdb
         }
+
+        public string F1()
+        {
+            return "Ivan";
+        }
     }
 }
