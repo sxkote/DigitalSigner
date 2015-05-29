@@ -17,7 +17,7 @@ namespace DigitalSigner.Classes
 
         public string F1()
         {
-            return "Ivan";
+            return "Kirill";
         }
     }
 }
