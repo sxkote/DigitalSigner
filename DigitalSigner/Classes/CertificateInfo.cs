@@ -12,7 +12,7 @@ namespace DigitalSigner.Classes
 
         public CertificateInfo()
         {
-
+            //dsvfg
         }
     }
 }
