@@ -72,18 +72,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_certificate_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_certificate_list.FormattingEnabled = true;
-            this.comboBox_certificate_list.Location = new System.Drawing.Point(174, 48);
+            this.comboBox_certificate_list.Location = new System.Drawing.Point(232, 59);
+            this.comboBox_certificate_list.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox_certificate_list.Name = "comboBox_certificate_list";
-            this.comboBox_certificate_list.Size = new System.Drawing.Size(406, 21);
+            this.comboBox_certificate_list.Size = new System.Drawing.Size(540, 24);
             this.comboBox_certificate_list.TabIndex = 0;
             this.comboBox_certificate_list.SelectedIndexChanged += new System.EventHandler(this.comboBox_certificate_list_SelectedIndexChanged);
             // 
             // button_browse_to_sign
             // 
             this.button_browse_to_sign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_browse_to_sign.Location = new System.Drawing.Point(604, 17);
+            this.button_browse_to_sign.Location = new System.Drawing.Point(805, 21);
+            this.button_browse_to_sign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_browse_to_sign.Name = "button_browse_to_sign";
-            this.button_browse_to_sign.Size = new System.Drawing.Size(75, 23);
+            this.button_browse_to_sign.Size = new System.Drawing.Size(100, 28);
             this.button_browse_to_sign.TabIndex = 1;
             this.button_browse_to_sign.Text = "Обзор";
             this.button_browse_to_sign.UseVisualStyleBackColor = true;
@@ -93,18 +95,20 @@
             // 
             this.textBox_sign_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_sign_file.Location = new System.Drawing.Point(174, 19);
+            this.textBox_sign_file.Location = new System.Drawing.Point(232, 23);
+            this.textBox_sign_file.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_sign_file.Name = "textBox_sign_file";
             this.textBox_sign_file.ReadOnly = true;
-            this.textBox_sign_file.Size = new System.Drawing.Size(424, 20);
+            this.textBox_sign_file.Size = new System.Drawing.Size(564, 22);
             this.textBox_sign_file.TabIndex = 2;
             // 
             // button_sign
             // 
             this.button_sign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_sign.Location = new System.Drawing.Point(483, 41);
+            this.button_sign.Location = new System.Drawing.Point(644, 50);
+            this.button_sign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_sign.Name = "button_sign";
-            this.button_sign.Size = new System.Drawing.Size(75, 23);
+            this.button_sign.Size = new System.Drawing.Size(100, 28);
             this.button_sign.TabIndex = 3;
             this.button_sign.Text = "Подписать";
             this.button_sign.UseVisualStyleBackColor = true;
@@ -113,18 +117,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 22);
+            this.label1.Location = new System.Drawing.Point(13, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
+            this.label1.Size = new System.Drawing.Size(136, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Файл для подписи:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 51);
+            this.label2.Location = new System.Drawing.Point(13, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.Size = new System.Drawing.Size(103, 17);
             this.label2.TabIndex = 5;
             this.label2.Text = "Сертификаты:";
             // 
@@ -137,9 +143,11 @@
             this.groupBox_sign.Controls.Add(this.label1);
             this.groupBox_sign.Controls.Add(this.button_browse_to_sign);
             this.groupBox_sign.Controls.Add(this.button_sign);
-            this.groupBox_sign.Location = new System.Drawing.Point(12, 159);
+            this.groupBox_sign.Location = new System.Drawing.Point(16, 196);
+            this.groupBox_sign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox_sign.Name = "groupBox_sign";
-            this.groupBox_sign.Size = new System.Drawing.Size(685, 67);
+            this.groupBox_sign.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_sign.Size = new System.Drawing.Size(913, 82);
             this.groupBox_sign.TabIndex = 6;
             this.groupBox_sign.TabStop = false;
             this.groupBox_sign.Text = "Подписание документов:";
@@ -149,9 +157,10 @@
             this.checkBox_sign_detached.AutoSize = true;
             this.checkBox_sign_detached.Checked = true;
             this.checkBox_sign_detached.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_sign_detached.Location = new System.Drawing.Point(174, 45);
+            this.checkBox_sign_detached.Location = new System.Drawing.Point(232, 55);
+            this.checkBox_sign_detached.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox_sign_detached.Name = "checkBox_sign_detached";
-            this.checkBox_sign_detached.Size = new System.Drawing.Size(303, 17);
+            this.checkBox_sign_detached.Size = new System.Drawing.Size(394, 21);
             this.checkBox_sign_detached.TabIndex = 14;
             this.checkBox_sign_detached.Text = "Отсоединенная подпись (подпись в отдельном файле)";
             this.checkBox_sign_detached.UseVisualStyleBackColor = true;
@@ -159,9 +168,10 @@
             // button_cert_show
             // 
             this.button_cert_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_cert_show.Location = new System.Drawing.Point(586, 78);
+            this.button_cert_show.Location = new System.Drawing.Point(781, 121);
+            this.button_cert_show.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_cert_show.Name = "button_cert_show";
-            this.button_cert_show.Size = new System.Drawing.Size(93, 23);
+            this.button_cert_show.Size = new System.Drawing.Size(124, 28);
             this.button_cert_show.TabIndex = 16;
             this.button_cert_show.Text = "Просмотр";
             this.button_cert_show.UseVisualStyleBackColor = true;
@@ -170,9 +180,10 @@
             // button_certificate_check
             // 
             this.button_certificate_check.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_certificate_check.Location = new System.Drawing.Point(586, 46);
+            this.button_certificate_check.Location = new System.Drawing.Point(781, 57);
+            this.button_certificate_check.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_certificate_check.Name = "button_certificate_check";
-            this.button_certificate_check.Size = new System.Drawing.Size(93, 23);
+            this.button_certificate_check.Size = new System.Drawing.Size(124, 28);
             this.button_certificate_check.TabIndex = 15;
             this.button_certificate_check.Text = "Проверить ЭП";
             this.button_certificate_check.UseVisualStyleBackColor = true;
@@ -181,18 +192,20 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 104);
+            this.label5.Location = new System.Drawing.Point(13, 128);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 13);
+            this.label5.Size = new System.Drawing.Size(124, 17);
             this.label5.TabIndex = 12;
             this.label5.Text = "Серийный номер:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 78);
+            this.label3.Location = new System.Drawing.Point(13, 96);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.Size = new System.Drawing.Size(67, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Субъект:";
             // 
@@ -200,20 +213,22 @@
             // 
             this.textBox_cert_serial_number.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_cert_serial_number.Location = new System.Drawing.Point(174, 101);
+            this.textBox_cert_serial_number.Location = new System.Drawing.Point(232, 124);
+            this.textBox_cert_serial_number.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_cert_serial_number.Name = "textBox_cert_serial_number";
             this.textBox_cert_serial_number.ReadOnly = true;
-            this.textBox_cert_serial_number.Size = new System.Drawing.Size(406, 20);
+            this.textBox_cert_serial_number.Size = new System.Drawing.Size(540, 22);
             this.textBox_cert_serial_number.TabIndex = 8;
             // 
             // textBox_cert_subject
             // 
             this.textBox_cert_subject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_cert_subject.Location = new System.Drawing.Point(174, 75);
+            this.textBox_cert_subject.Location = new System.Drawing.Point(232, 92);
+            this.textBox_cert_subject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_cert_subject.Name = "textBox_cert_subject";
             this.textBox_cert_subject.ReadOnly = true;
-            this.textBox_cert_subject.Size = new System.Drawing.Size(406, 20);
+            this.textBox_cert_subject.Size = new System.Drawing.Size(540, 22);
             this.textBox_cert_subject.TabIndex = 6;
             // 
             // saveFileDialog_sign
@@ -240,9 +255,11 @@
             this.groupBox_check.Controls.Add(this.button_browse_to_check_sign);
             this.groupBox_check.Controls.Add(this.textBox_check_file);
             this.groupBox_check.Controls.Add(this.textBox_check_sign);
-            this.groupBox_check.Location = new System.Drawing.Point(12, 243);
+            this.groupBox_check.Location = new System.Drawing.Point(16, 299);
+            this.groupBox_check.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox_check.Name = "groupBox_check";
-            this.groupBox_check.Size = new System.Drawing.Size(685, 94);
+            this.groupBox_check.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_check.Size = new System.Drawing.Size(913, 116);
             this.groupBox_check.TabIndex = 7;
             this.groupBox_check.TabStop = false;
             this.groupBox_check.Text = "Проверка подписи:";
@@ -250,27 +267,30 @@
             // label_check_file
             // 
             this.label_check_file.AutoSize = true;
-            this.label_check_file.Location = new System.Drawing.Point(10, 48);
+            this.label_check_file.Location = new System.Drawing.Point(13, 59);
+            this.label_check_file.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_check_file.Name = "label_check_file";
-            this.label_check_file.Size = new System.Drawing.Size(137, 13);
+            this.label_check_file.Size = new System.Drawing.Size(175, 17);
             this.label_check_file.TabIndex = 18;
             this.label_check_file.Text = "Подписываемые данные:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 22);
+            this.label7.Location = new System.Drawing.Point(13, 27);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(155, 13);
+            this.label7.Size = new System.Drawing.Size(198, 17);
             this.label7.TabIndex = 17;
             this.label7.Text = "Файл, содержащий подпись:";
             // 
             // button_check
             // 
             this.button_check.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_check.Location = new System.Drawing.Point(483, 67);
+            this.button_check.Location = new System.Drawing.Point(644, 82);
+            this.button_check.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_check.Name = "button_check";
-            this.button_check.Size = new System.Drawing.Size(75, 23);
+            this.button_check.Size = new System.Drawing.Size(100, 28);
             this.button_check.TabIndex = 16;
             this.button_check.Text = "Проверить";
             this.button_check.UseVisualStyleBackColor = true;
@@ -281,9 +301,10 @@
             this.checkBox_check_detached.AutoSize = true;
             this.checkBox_check_detached.Checked = true;
             this.checkBox_check_detached.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_check_detached.Location = new System.Drawing.Point(174, 71);
+            this.checkBox_check_detached.Location = new System.Drawing.Point(232, 87);
+            this.checkBox_check_detached.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBox_check_detached.Name = "checkBox_check_detached";
-            this.checkBox_check_detached.Size = new System.Drawing.Size(303, 17);
+            this.checkBox_check_detached.Size = new System.Drawing.Size(394, 21);
             this.checkBox_check_detached.TabIndex = 15;
             this.checkBox_check_detached.Text = "Отсоединенная подпись (подпись в отдельном файле)";
             this.checkBox_check_detached.UseVisualStyleBackColor = true;
@@ -292,9 +313,10 @@
             // button_browse_to_check_file
             // 
             this.button_browse_to_check_file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_browse_to_check_file.Location = new System.Drawing.Point(604, 43);
+            this.button_browse_to_check_file.Location = new System.Drawing.Point(805, 53);
+            this.button_browse_to_check_file.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_browse_to_check_file.Name = "button_browse_to_check_file";
-            this.button_browse_to_check_file.Size = new System.Drawing.Size(75, 23);
+            this.button_browse_to_check_file.Size = new System.Drawing.Size(100, 28);
             this.button_browse_to_check_file.TabIndex = 6;
             this.button_browse_to_check_file.Text = "Обзор";
             this.button_browse_to_check_file.UseVisualStyleBackColor = true;
@@ -303,9 +325,10 @@
             // button_browse_to_check_sign
             // 
             this.button_browse_to_check_sign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_browse_to_check_sign.Location = new System.Drawing.Point(604, 17);
+            this.button_browse_to_check_sign.Location = new System.Drawing.Point(805, 21);
+            this.button_browse_to_check_sign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_browse_to_check_sign.Name = "button_browse_to_check_sign";
-            this.button_browse_to_check_sign.Size = new System.Drawing.Size(75, 23);
+            this.button_browse_to_check_sign.Size = new System.Drawing.Size(100, 28);
             this.button_browse_to_check_sign.TabIndex = 5;
             this.button_browse_to_check_sign.Text = "Обзор";
             this.button_browse_to_check_sign.UseVisualStyleBackColor = true;
@@ -315,20 +338,22 @@
             // 
             this.textBox_check_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_check_file.Location = new System.Drawing.Point(174, 45);
+            this.textBox_check_file.Location = new System.Drawing.Point(232, 55);
+            this.textBox_check_file.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_check_file.Name = "textBox_check_file";
             this.textBox_check_file.ReadOnly = true;
-            this.textBox_check_file.Size = new System.Drawing.Size(424, 20);
+            this.textBox_check_file.Size = new System.Drawing.Size(564, 22);
             this.textBox_check_file.TabIndex = 4;
             // 
             // textBox_check_sign
             // 
             this.textBox_check_sign.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_check_sign.Location = new System.Drawing.Point(174, 19);
+            this.textBox_check_sign.Location = new System.Drawing.Point(232, 23);
+            this.textBox_check_sign.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_check_sign.Name = "textBox_check_sign";
             this.textBox_check_sign.ReadOnly = true;
-            this.textBox_check_sign.Size = new System.Drawing.Size(424, 20);
+            this.textBox_check_sign.Size = new System.Drawing.Size(564, 22);
             this.textBox_check_sign.TabIndex = 3;
             // 
             // textBox_check_result
@@ -336,12 +361,13 @@
             this.textBox_check_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_check_result.Location = new System.Drawing.Point(7, 19);
+            this.textBox_check_result.Location = new System.Drawing.Point(9, 23);
+            this.textBox_check_result.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_check_result.Multiline = true;
             this.textBox_check_result.Name = "textBox_check_result";
             this.textBox_check_result.ReadOnly = true;
             this.textBox_check_result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox_check_result.Size = new System.Drawing.Size(672, 203);
+            this.textBox_check_result.Size = new System.Drawing.Size(895, 249);
             this.textBox_check_result.TabIndex = 19;
             this.textBox_check_result.WordWrap = false;
             // 
@@ -351,9 +377,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_result.Controls.Add(this.textBox_check_result);
-            this.groupBox_result.Location = new System.Drawing.Point(12, 356);
+            this.groupBox_result.Location = new System.Drawing.Point(16, 438);
+            this.groupBox_result.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox_result.Name = "groupBox_result";
-            this.groupBox_result.Size = new System.Drawing.Size(685, 228);
+            this.groupBox_result.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_result.Size = new System.Drawing.Size(913, 281);
             this.groupBox_result.TabIndex = 8;
             this.groupBox_result.TabStop = false;
             this.groupBox_result.Text = "Результат:";
@@ -372,18 +400,21 @@
             this.groupBox_certificates.Controls.Add(this.label5);
             this.groupBox_certificates.Controls.Add(this.textBox_cert_serial_number);
             this.groupBox_certificates.Controls.Add(this.label3);
-            this.groupBox_certificates.Location = new System.Drawing.Point(12, 12);
+            this.groupBox_certificates.Location = new System.Drawing.Point(16, 15);
+            this.groupBox_certificates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox_certificates.Name = "groupBox_certificates";
-            this.groupBox_certificates.Size = new System.Drawing.Size(685, 128);
+            this.groupBox_certificates.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox_certificates.Size = new System.Drawing.Size(913, 158);
             this.groupBox_certificates.TabIndex = 9;
             this.groupBox_certificates.TabStop = false;
             this.groupBox_certificates.Text = "Сертификаты:";
             // 
             // button_certificate_from_file
             // 
-            this.button_certificate_from_file.Location = new System.Drawing.Point(381, 19);
+            this.button_certificate_from_file.Location = new System.Drawing.Point(508, 23);
+            this.button_certificate_from_file.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_certificate_from_file.Name = "button_certificate_from_file";
-            this.button_certificate_from_file.Size = new System.Drawing.Size(199, 23);
+            this.button_certificate_from_file.Size = new System.Drawing.Size(265, 28);
             this.button_certificate_from_file.TabIndex = 18;
             this.button_certificate_from_file.Text = "Загрузить из файла";
             this.button_certificate_from_file.UseVisualStyleBackColor = true;
@@ -391,9 +422,10 @@
             // 
             // button_certificate_from_store
             // 
-            this.button_certificate_from_store.Location = new System.Drawing.Point(174, 19);
+            this.button_certificate_from_store.Location = new System.Drawing.Point(232, 23);
+            this.button_certificate_from_store.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_certificate_from_store.Name = "button_certificate_from_store";
-            this.button_certificate_from_store.Size = new System.Drawing.Size(199, 23);
+            this.button_certificate_from_store.Size = new System.Drawing.Size(265, 28);
             this.button_certificate_from_store.TabIndex = 17;
             this.button_certificate_from_store.Text = "Загрузить из хранилища";
             this.button_certificate_from_store.UseVisualStyleBackColor = true;
@@ -401,17 +433,18 @@
             // 
             // openFileDialog_certificate
             // 
-            this.openFileDialog_certificate.Filter = "CER|*.cer|P7B|*.p7b|All Files|*.*";
+            this.openFileDialog_certificate.Filter = "CER|*.cer|P7B|*.p7b|PFX|*.pfx|All Files|*.*";
             // 
             // SignerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(709, 596);
+            this.ClientSize = new System.Drawing.Size(945, 734);
             this.Controls.Add(this.groupBox_certificates);
             this.Controls.Add(this.groupBox_result);
             this.Controls.Add(this.groupBox_check);
             this.Controls.Add(this.groupBox_sign);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SignerForm";
             this.Text = "SXSigner";
             this.groupBox_sign.ResumeLayout(false);

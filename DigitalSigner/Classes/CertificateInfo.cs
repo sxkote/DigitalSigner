@@ -23,16 +23,14 @@ namespace DigitalSigner.Classes
         public string Subject
         { get { return _certificate == null ? "" : _certificate.Subject; } }
 
-        public string SubjectCN
+        public string SubjectCommonName
         { get { return GetParam(this.Subject, "CN"); } }
 
         public string Issuer
         { get { return _certificate == null ? "" : _certificate.Issuer; } }
 
-        public string IssuerCN
+        public string IssuerCommonName
         { get { return GetParam(this.Issuer, "CN"); } }
-
-        public CertificateInfo() { }
 
         public CertificateInfo(X509Certificate2 cert)
         { _certificate = cert; }
@@ -42,7 +40,7 @@ namespace DigitalSigner.Classes
             if (this.Certificate == null)
                 return "NULL";
 
-            return this.SubjectCN + "  [" + this.IssuerCN + "]";
+            return this.SubjectCommonName + "  [" + this.IssuerCommonName + "]";
         }
 
         static private string GetParam(string text, string param_name)
