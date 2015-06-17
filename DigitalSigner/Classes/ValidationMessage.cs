@@ -9,7 +9,7 @@ namespace DigitalSigner.Classes
     /// <summary>
     /// Certificate Verification Message is used to hold the Error or Info Message about the Certificate.
     /// </summary>
-    public struct CertificateValidationMessage
+    public struct ValidationMessage
     {
         public enum MessageType { None, Info, Error };
 
@@ -20,13 +20,13 @@ namespace DigitalSigner.Classes
 
         public MessageType Type { get { return _type; } }
 
-        public CertificateValidationMessage(MessageType type, string message = "")
+        public ValidationMessage(MessageType type, string message = "")
         {
             _type = type;
             _message = message;
         }
 
-        public CertificateValidationMessage(MessageType type, string name, string value)
+        public ValidationMessage(MessageType type, string name, string value)
         {
             _type = type;
             _message = String.Format("{0}: {1}", name, value);
@@ -50,24 +50,24 @@ namespace DigitalSigner.Classes
             return prefix + this.Message + Environment.NewLine;
         }
 
-        static public CertificateValidationMessage Info(string message)
+        static public ValidationMessage Info(string message)
         {
-            return new CertificateValidationMessage(MessageType.Info, message);
+            return new ValidationMessage(MessageType.Info, message);
         }
 
-        static public CertificateValidationMessage Info(string name, string value)
+        static public ValidationMessage Info(string name, string value)
         {
-            return new CertificateValidationMessage(MessageType.Info, name, value);
+            return new ValidationMessage(MessageType.Info, name, value);
         }
 
-        static public CertificateValidationMessage Error(string message)
+        static public ValidationMessage Error(string message)
         {
-            return new CertificateValidationMessage(MessageType.Error, message);
+            return new ValidationMessage(MessageType.Error, message);
         }
 
-        static public CertificateValidationMessage Error(string name, string value)
+        static public ValidationMessage Error(string name, string value)
         {
-            return new CertificateValidationMessage(MessageType.Error, name, value);
+            return new ValidationMessage(MessageType.Error, name, value);
         }
     }
 

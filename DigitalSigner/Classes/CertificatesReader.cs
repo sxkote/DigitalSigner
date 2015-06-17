@@ -9,13 +9,13 @@ namespace DigitalSigner.Classes
 {
     public interface ICertificateReader
     {
-        ICollection<CertificateInfo> GetCertificatesFromStore();
-        CertificateInfo GetCertificateFromFile(byte[] data, string password);
+        ICollection<ICertificate> GetCertificatesFromStore();
+        ICertificate GetCertificateFromFile(byte[] data, string password);
     }
 
     public class CertificateReader : ICertificateReader
     {
-        public ICollection<CertificateInfo> GetCertificatesFromStore()
+        public ICollection<ICertificate> GetCertificatesFromStore()
         {
             //открываем хранилище сертификатов (личные сертификаты для текущего пользователя)
             X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
@@ -26,18 +26,18 @@ namespace DigitalSigner.Classes
             //фильтруем все доступные сертификаты
             return store.Certificates.Cast<X509Certificate2>()
                                     .Where(cert => cert.NotBefore < DateTime.Now && DateTime.Now < cert.NotAfter)
-                                    .Select(cert => new CertificateInfo(cert))
+                                    .Select(cert => new Certificate(cert))
                                     .ToArray();
         }
 
-        public CertificateInfo GetCertificateFromFile(byte[] data, string password)
+        public ICertificate GetCertificateFromFile(byte[] data, string password)
         {
             //проверяем, что данные не пусты
             if (data == null || data.Length <= 0)
                 return null;
 
             //создаем новый сертификат из данных файла
-            return new CertificateInfo(new X509Certificate2(data, password));
+            return new Certificate(new X509Certificate2(data, password));
         }        
     }
 }

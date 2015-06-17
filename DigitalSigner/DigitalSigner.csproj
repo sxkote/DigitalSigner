@@ -45,12 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CertificateInfo.cs" />
-    <Compile Include="Classes\CertificateValidationMessage.cs" />
+    <Compile Include="Classes\Certificate.cs" />
+    <Compile Include="Classes\CertificateSigner.cs" />
+    <Compile Include="Classes\ValidationMessage.cs" />
     <Compile Include="Classes\CertificatesReader.cs" />
     <Compile Include="Classes\CertificateValidator.cs" />
-    <Compile Include="Classes\CertificateValidationResult.cs" />
-    <Compile Include="Classes\Extensions.cs" />
+    <Compile Include="Classes\ValidationResult.cs" />
     <Compile Include="OpenCertificateForm.cs">
       <SubType>Form</SubType>
     </Compile>

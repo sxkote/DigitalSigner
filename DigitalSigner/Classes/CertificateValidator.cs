@@ -9,40 +9,47 @@ namespace DigitalSigner.Classes
 {
     public interface ICertificateValidator
     {
-        CertificateValidationResult Validate(CertificateInfo certificate);
+        ValidationResult Validate(ICertificate certificate);
     }
 
-    public class CertificateValidator : ICertificateValidator
+    public class CertificateCommonValidator : ICertificateValidator
     {
-        private CertificateInfo _certificate = null;
-
-        public CertificateValidator(CertificateInfo certificate)
+        /// <summary>
+        /// Проверка валидности и отозванности с использованием базовой политики проверки
+        /// </summary>
+        /// <returns>Список сообщений/ошибок о валидности и/или отозвонности сертификата</returns>
+        public ValidationResult Validate(ICertificate certificate)
         {
-            _certificate = certificate;
+            var result = new ValidationResult();
 
-            if (_certificate == null || _certificate.Certificate == null)
-                throw new ArgumentNullException("certificate");
-        }
-
-        public CertificateValidationResult Validate(CertificateInfo certificate)
-        {
-            var result = new CertificateValidationResult();
-
-            if (certificate == null || certificate.Certificate == null) 
+            if (certificate == null)
                 return result;
 
-            result.Add("Отпечаток сертификата", certificate.Thumbprint);
-            result.Add("Серийный номер сертификата", certificate.SerialNumber);
+            bool isValid = certificate.NotBefore < DateTime.Now && DateTime.Now < certificate.NotAfter;
+            result.Add(isValid, "Срок действия", String.Format("{0} ({1} - {2})", isValid ? "действителен" : "истек", certificate.NotBefore.ToShortDateString(), certificate.NotAfter.ToShortDateString()));
+
             result.AddNewLine();
 
-            #region //проверка валидности и отозванности с использованием базовой политики проверки
-            if (certificate.Certificate.Verify())
-                result.AddInfo("Базовая проверка", "сертификат действителен и не отозван (прошел стандартную проверку)");
-            else
-                result.AddError("Базовая проверка", "сертификат НЕ валиден (НЕ прошел стандартную проверку)");
-            #endregion
+            bool isVerified = certificate.CertificateX509.Verify();
+            result.Add(isVerified, "Базовая проверка", isVerified ? "сертификат действителен и не отозван (прошел стандартную проверку)" : "сертификат НЕ валиден (НЕ прошел стандартную проверку)");
 
-            #region //проверка валидности и отозванности с использованием пользовательской политики проверки
+            return result;
+        }
+    }
+
+    public class CertificateChainValidator : ICertificateValidator
+    {
+        /// <summary>
+        /// Проверка валидности и отозванности с использованием пользовательской политики проверки
+        /// </summary>
+        /// <returns>Список сообщений/ошибок о валидности и/или отозвонности сертификата</returns>
+        public ValidationResult Validate(ICertificate certificate)
+        {
+            var result = new ValidationResult();
+
+            if (certificate == null)
+                return result;
+
             //создаем цепочку сертификата
             X509Chain ch = new X509Chain();
             //отозванность сертификата хотим получать онлайн
@@ -52,106 +59,93 @@ namespace DigitalSigner.Classes
             //проверка валидности самая полная 
             ch.ChainPolicy.VerificationFlags = X509VerificationFlags.AllFlags;
             //строим цепочку на основе сертификата
-            ch.Build(certificate.Certificate);
+            ch.Build(certificate.CertificateX509);
 
-            result.AddNewLine();
-            result.AddNewLine();
             result.Add("Проверка цепочки сертификатов:");
             result.AddNewLine();
 
-            bool valid_result = true;
+            bool isValid = true;
             foreach (X509ChainElement element in ch.ChainElements)
             {
                 bool verify = element.Certificate.Verify();
 
-                valid_result = valid_result && verify;
+                isValid = isValid && verify;
 
-                result.Add("Субъект", element.Certificate.Subject);
-                result.Add("Издатель", element.Certificate.Issuer);
-                result.Add("Отпечаток", element.Certificate.Thumbprint);
-                result.Add("Серийный номер", element.Certificate.SerialNumber);
-                result.Add("Срок действия", String.Format("c {0} по {1}", element.Certificate.NotBefore, element.Certificate.NotAfter));
-                result.Add(verify ? CertificateValidationMessage.MessageType.Info : CertificateValidationMessage.MessageType.Error, "Валиден", verify.ToString());
+                result.Add("  Субъект", element.Certificate.Subject);
+                result.Add("  Издатель", element.Certificate.Issuer);
+                result.Add("  Отпечаток", element.Certificate.Thumbprint);
+                result.Add("  Серийный номер", element.Certificate.SerialNumber);
+                result.Add("  Срок действия", String.Format("c {0} по {1}", element.Certificate.NotBefore, element.Certificate.NotAfter));
+                result.Add(verify, "  Валиден", verify.ToString());
                 result.AddNewLine();
             }
 
-            result.Add(valid_result ? CertificateValidationMessage.MessageType.Info : CertificateValidationMessage.MessageType.Error, "Результат проверки цепочки", valid_result ? "Сертификат прошел проверку" : "Сертификат НЕ прошел проверку");
-            result.AddNewLine();
-            #endregion
+            result.Add(isValid, "Результат проверки цепочки", isValid ? "Сертификат прошел проверку" : "Сертификат НЕ прошел проверку");
 
             return result;
         }
+    }
 
-        /// <summary>
-        /// Проверка срока действия сертификата
-        /// </summary>
-        /// <returns>Ошибку либо информационное сообщение о валидности дат</returns>
-        protected CertificateValidationResult ValidateDates()
-        {
-            var result = new CertificateValidationResult();
-
-            if (_certificate.Certificate.NotBefore < DateTime.Now && DateTime.Now < _certificate.Certificate.NotAfter)
-                result.AddInfo("Срок действия", "действует");
-            else
-               result.AddError("Срок действия", "истек");
-
-            return result;
-        }
-
+    public class CertificateQualifiedValidator : ICertificateValidator
+    {
         /// <summary>
         /// Проверка сертификата на квалифицированность
         /// </summary>
         /// <returns>Список сообщений/ошибок о квалифицированности сертификата</returns>
-        protected CertificateValidationResult ValidateQualified()
+        public ValidationResult Validate(ICertificate certificate)
         {
-            var result = new CertificateValidationResult();
+            var result = new ValidationResult();
 
-            #region //проверка квалифицированности сертификата
+            if (certificate == null)
+                return result;
+
             bool isQualified = true;
 
-            result.AddNewLine();
-            result.AddNewLine();
             result.Add("Проверка квалифицированного сертификатов:");
             result.AddNewLine();
 
-            string common_name = GetCertificateProperty(_certificate, "CN");
-            if (common_name == "")
+            string subjectCommonName = certificate.SubjectCommonName;
+
+            if (subjectCommonName == "")
             {
-                result.AddError("Не задано наименование (CN) Субъекта");
+                result.AddError("  Не задано наименование (CN) Субъекта");
                 isQualified = false;
             }
 
-            if (GetCertificateProperty(_certificate, "O") == "")
+            if (certificate.Organization == "")
             {
-                result.AddError("Не задана организация (O) Субъекта");
+                result.AddError("  Не задана организация (O) Субъекта");
                 isQualified = false;
             }
 
-            if (GetCertificateProperty(_certificate, "L") == "")
+            if (certificate.Locality == "")
             {
-                result.AddError("Не задана расположение (L) Субъекта");
+                result.AddError("  Не задана расположение (L) Субъекта");
                 isQualified = false;
             }
 
-            if (GetCertificateProperty(_certificate, "E") == "")
+            if (certificate.Email == "")
             {
-                result.AddError("Не задан e-mail (E) Субъекта");
+                result.AddError("  Не задан e-mail (E) Субъекта");
                 isQualified = false;
             }
 
-            string inn = GetCertificateProperty(_certificate, "ИНН");
-            if (inn == "")
-                inn = GetCertificateProperty(_certificate, "1.2.643.3.131.1.1");
-            if (inn.Trim().Length != 12)
+            if (certificate.INN.Trim().Length != 12)
             {
-                result.AddError("ИНН Субъекта должен состоять из 12 знаков");
+                result.AddError("  ИНН Субъекта должен состоять из 12 знаков");
+                isQualified = false;
+            }
+
+            if (String.IsNullOrEmpty(certificate.OGRN))
+            {
+                result.AddError("  Не задан ОГРН Субъекта");
                 isQualified = false;
             }
 
             int CN_fio = 0;
             int CN_org = 0;
 
-            string[] splits = common_name.Split(new string[1] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] splits = subjectCommonName.Split(new string[1] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
             if (splits.Length == 3)
             {
@@ -162,55 +156,47 @@ namespace DigitalSigner.Classes
             }
             else CN_org += 2;
 
-            if (common_name.Contains("\""))
+            if (subjectCommonName.Contains("\""))
                 CN_org += 3;
             else CN_fio += 1;
 
-            if (common_name.ToLower().Contains("ооо") || common_name.ToLower().Contains("зао") || common_name.ToLower().Contains("оао") || common_name.ToLower().Contains("пао") || common_name.ToLower().StartsWith("ип"))
+            if (subjectCommonName.ToLower().Contains("ооо") || subjectCommonName.ToLower().Contains("зао") || subjectCommonName.ToLower().Contains("оао") || subjectCommonName.ToLower().Contains("пао") || subjectCommonName.ToLower().StartsWith("ип"))
                 CN_org += 2;
 
-            if (CN_fio > CN_org && GetCertificateProperty(_certificate, "СНИЛС").Trim().Length == 0 && GetCertificateProperty(_certificate, "1.2.643.100.3").Trim().Length == 0)
+            if (CN_fio > CN_org && String.IsNullOrEmpty(certificate.SNILS))
             {
-                result.AddError("Не задан СНИЛС Субъекта");
+                result.AddError("  Не задан СНИЛС Субъекта");
                 isQualified = false;
             }
 
-            if (GetCertificateProperty(_certificate, "ОГРН").Trim().Length == 0 && GetCertificateProperty(_certificate, "1.2.643.100.1").Trim().Length == 0)
-            {
-                result.AddError("Не задан ОГРН Субъекта");
-                isQualified = false;
-            }
-
-            result.Add(isQualified ? CertificateValidationMessage.MessageType.Info : CertificateValidationMessage.MessageType.Error, "Результат проверки квалифицированного сертификата", isQualified ? "Сертификат является Квалифицированным" : "Сертификат НЕ является Квалифицированным");
-            #endregion
+            result.Add(isQualified, "Результат проверки квалифицированного сертификата", isQualified ? "Сертификат является Квалифицированным" : "Сертификат НЕ является Квалифицированным");
 
             return result;
         }
+    }
 
-        static private string GetCertificateProperty(CertificateInfo certificate, string pattern)
+    public class CertificateValidator:ICertificateValidator
+    {
+        public ValidationResult Validate(ICertificate certificate)
         {
-            if (certificate == null || certificate.Certificate == null)
-                return "";
+            var result = new ValidationResult();
 
-            string result = "";
-            string Name = certificate.Certificate.SubjectName.Name;
+            if (certificate == null)
+                return result;
 
-            pattern = pattern.ToLower();
+            result.Add("Отпечаток сертификата", certificate.Thumbprint);
+            result.Add("Серийный номер сертификата", certificate.SerialNumber);
 
-            string[] parts = Name.Split(new char[1] { ',' });
-            for (int i = 0; i < parts.Length; i++)
-                if (parts[i].Trim().ToLower().StartsWith(pattern))
-                {
-                    result = parts[i].Replace(pattern + "=", "").Replace(pattern.ToUpper() + "=", "").Trim();
-                    break;
-                }
+            result.AddNewLine(2);
+            result.AddRange(new CertificateCommonValidator().Validate(certificate));
 
-            if (result.StartsWith("\"") && result.EndsWith("\""))
-                result = result.Substring(1, result.Length - 2);
+            result.AddNewLine(2);
+            result.AddRange(new CertificateChainValidator().Validate(certificate));
 
-            result = result.Replace("\"\"", "\"");
+            result.AddNewLine(2);
+            result.AddRange(new CertificateQualifiedValidator().Validate(certificate));
 
-            return result.Trim();
+            return result;
         }
     }
 }
