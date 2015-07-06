@@ -175,7 +175,7 @@ namespace DigitalSigner.Classes
         }
     }
 
-    public class CertificateValidator:ICertificateValidator
+    public class CertificateValidator : ICertificateValidator
     {
         public ValidationResult Validate(ICertificate certificate)
         {

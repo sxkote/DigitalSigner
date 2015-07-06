@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DigitalSigner.Classes
 {
     /// <summary>
-    /// Certificate Verification Message is used to hold the Error or Info Message about the Certificate.
+    /// Сообщение или ошибка о проверке или результате работы
     /// </summary>
     public struct ValidationMessage
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DigitalSigner.Classes
 {
     /// <summary>
-    /// Collection of Certificate Validation Messages (errors or info messages).
+    /// Список сообщений/ошибок о проверки или результате работы
     /// </summary>
     public class ValidationResult : List<ValidationMessage>
     {
