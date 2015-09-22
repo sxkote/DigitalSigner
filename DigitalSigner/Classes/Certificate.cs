@@ -7,6 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace DigitalSigner.Classes
 {
+    /// <summary>
+    /// Certificate Interface
+    /// </summary>
     public interface ICertificate
     {
         X509Certificate2 CertificateX509 { get; }
